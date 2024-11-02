@@ -1,13 +1,14 @@
 // routes/reservas.routes.js
-import express from 'express'; // Cambia require a import
-import ReservaModel from '../dao/Models/reserva.model.js';
+import express from 'express';
 const router = express.Router();
+import Reserva from '../dao/Models/reserva.model.js';
 
-// Define tus rutas aquí, por ejemplo:
-router.post('/', async (req, res) => {
+const reservasRouter = express.Router();
+
+reservasRouter.post('/', async (req, res) => {
     try {
         console.log(req.body)
-      await ReservaModel.create(req.body)
+      await Reserva.create(req.body)
         
         res.status(201).json({ message: 'Reserva creada con éxito' });
     } catch (error) {
@@ -16,4 +17,4 @@ router.post('/', async (req, res) => {
     }
 });
 
-export default router;
+export default reservasRouter;

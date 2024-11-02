@@ -2,7 +2,7 @@
 import restaurantesService from '../service/restaurantes.service.js';
 import express from 'express';
 const restaurantesRouter = express.Router();
-
+import restaurantesController from '../controllers/restaurantes.controller.js';
 restaurantesRouter.get('/', async (req, res) => {
     try {
         const { disponible, ciudad } = req.query;
@@ -22,5 +22,7 @@ restaurantesRouter.get('/', async (req, res) => {
         res.status(500).json({ error: 'Error al obtener restaurantes' });
     }
 });
+
+restaurantesRouter.get('/:rId', restaurantesController.getRestById);
 
 export default restaurantesRouter;

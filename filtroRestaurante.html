@@ -67,11 +67,12 @@
                 .then(restaurantes => {
                     const list = document.getElementById('restaurant-list');
                     list.innerHTML = ''; // Limpiar la lista antes de agregar nuevos elementos
+                    
                     restaurantes.forEach(restaurant => {
                         const card = document.createElement('div');
                         card.className = 'card';
                         card.innerHTML = `
-                            <a href="/reservaCliente" class="card-link">
+                            <a href="/reservaCliente/${restaurant._id}" class="card-link">
                                 <h2>${restaurant.nombre}</h2>
                                 <img src="img/${restaurant.image}" alt="${restaurant.nombre}" style="width:100%; border-radius: 8px;">
                                 <p>Ciudad: ${restaurant.ciudad}</p>

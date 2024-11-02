@@ -1,17 +1,14 @@
 // services/reservaService.js
 import ReservaModel from '../dao/Models/reserva.model.js'; // Usa import en lugar de require
-class Reserva{
 
-
-// Función para crear una nueva reserva
-async crearReserva(reservaData = {}) {
-    try {
-        const nuevaReserva = new ReservaModel(reservaData); // Crear instancia del modelo
-        await nuevaReserva.save(); // Guardar la reserva en la base de datos
-        return nuevaReserva; // Retornar la nueva reserva
-    } catch (error) {
-        throw new Error('Error al crear la reserva: ' + error.message);
+class ReservaService {
+    async crearReserva(data) {
+      const reserva = new Reserva(data);
+      return await reserva.save();
     }
-}
-}
-export default new Reserva();
+  
+    async obtenerReservasPorRestaurante(restauranteId) {
+      return await Reserva.find({ restauranteId });
+    }
+  }
+export default new ReservaService();

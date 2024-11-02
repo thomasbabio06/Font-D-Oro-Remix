@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link rel="stylesheet" href="/style/style.css" />
@@ -45,8 +44,8 @@
                 </div>
 
                 <!-- Campo oculto para el ID del restaurante -->
-<!--                 <input type="hidden" id="restaurantId" name="restaurantId" value="" />
- -->
+                <input type="hidden" id="restaurantId" name="restaurantId" value="" />
+
                 <div class='botonIngresar'>
                     <input class='botonI' type="submit" value="Confirmar">
                 </div>
@@ -55,46 +54,46 @@
     </div>
     
     <script>
-        // Obtener el ID del restaurante de la URL
-        const urlParams = new URLSearchParams(window.location.search);
-        const restaurantId = urlParams.get('restaurantId');
+        // Este código se ejecutará una vez que el DOM esté cargado
+   // Obtener el ID del restaurante de la URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const restaurantId = urlParams.get('restaurantId');
 
-        // Asignar el ID del restaurante al campo oculto del formulario
-        document.getElementById('restaurantId').value = restaurantId;
-        console.log('restaurantId:', restaurantId); // Verifica que el ID se haya asignado
+    // Asignar el ID del restaurante al campo oculto del formulario
+    document.getElementById('restaurantId').value = restaurantId;
+    console.log('restaurantId:', restaurantId); // Verifica que el ID se haya asignado
 
-        // Manejar el envío del formulario
-        document.getElementById('reservaForm').onsubmit = function(event) {
-            event.preventDefault(); // Evitar el envío por defecto
+    // Manejar el envío del formulario
+    document.getElementById('reservaForm').onsubmit = function(event) {
+        event.preventDefault(); // Evitar el envío por defecto
 
-            const formData = new FormData(this);
-            const data = Object.fromEntries(formData.entries());
+        const formData = new FormData(this);
+        const data = Object.fromEntries(formData.entries());
 
-            // Verificar el objeto de datos antes de enviarlo
-            console.log(data); // Debería incluir `restaurantId` con el valor correcto
+        // Verificar el objeto de datos antes de enviarlo
+        data.restauranteId = "<%=rId%>"
 
-            // Enviar la reserva al servidor
-            fetch('/api/reservas', { // Cambia esto a '/api/reservas'
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(data), // Convertir datos a JSON
-})
-.then(response => {
-    if (response.ok) {
-        alert('Reserva realizada con éxito.');
-        window.location.href = 'index.html'; // Redirigir a la página principal
-    } else {
-        return response.json().then(err => { throw new Error(err.error); });
-    }
-})
-.catch(error => {
-    alert('Error al realizar la reserva: ' + error.message);
-    console.error('Error:', error);
-});
-        };
+        // Enviar la reserva al servidor
+        fetch('/api/reservas', { // Cambia esto a '/api/reservas'
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data), // Convertir datos a JSON
+        })
+        .then(response => {
+            if (response.ok) {
+                alert('Reserva realizada con éxito.');
+                window.location.href = 'index.html'; // Redirigir a la página principal
+            } else {
+                return response.json().then(err => { throw new Error(err.error); });
+            }
+        })
+        .catch(error => {
+            alert('Error al realizar la reserva: ' + error.message);
+            console.error('Error:', error);
+        });
+    };
     </script>
 </body>
-
 </html>
