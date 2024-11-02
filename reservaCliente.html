@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" href="/style/style.css" />
+    <title>Font D' Oro</title>
+</head>
+
+<body id="ReservaCliente">
+    <div class='containerPrincipal'>
+        <div class="cajaLogin">
+            <h3>Realiza Tu Reserva</h3>
+            <form id="reservaForm" method="post">
+                <div class='bloqueTexto'>
+                    <div class="input1">
+                        <p>N° Mesa</p>
+                        <input type='number' name="mesa" class="inputNombre" required placeholder='N° Mesa'>
+                    </div>
+                </div>
+
+                <div class='bloqueTexto'>
+                    <div class="input3">
+                        <p>Tipo de Pago</p>
+                        <select name="tipoPago" class="inputTipoPago">
+                            <option value="efectivo">Efectivo</option>
+                            <option value="tarjeta">Tarjeta</option>
+                            <option value="mercadoPago">Mercado Pago</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class='bloqueTexto'>
+                    <div class="input4">
+                        <p>Fecha</p>
+                        <input name="fecha" class="inputFecha" type='date' required>
+                    </div>
+                </div>
+
+                <div class='bloqueTexto'>
+                    <div class="input5">
+                        <p>Cantidad de personas</p>
+                        <input name="cantPersonas" class="inputCantPersonas" type='number' min="1" max="10" required>
+                    </div>
+                </div>
+
+                <!-- Campo oculto para el ID del restaurante -->
+<!--                 <input type="hidden" id="restaurantId" name="restaurantId" value="" />
+ -->
+                <div class='botonIngresar'>
+                    <input class='botonI' type="submit" value="Confirmar">
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <script>
+        // Obtener el ID del restaurante de la URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const restaurantId = urlParams.get('restaurantId');
+
+        // Asignar el ID del restaurante al campo oculto del formulario
+        document.getElementById('restaurantId').value = restaurantId;
+        console.log('restaurantId:', restaurantId); // Verifica que el ID se haya asignado
+
+        // Manejar el envío del formulario
+        document.getElementById('reservaForm').onsubmit = function(event) {
+            event.preventDefault(); // Evitar el envío por defecto
+
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData.entries());
+
+            // Verificar el objeto de datos antes de enviarlo
+            console.log(data); // Debería incluir `restaurantId` con el valor correcto
+
+            // Enviar la reserva al servidor
+            fetch('/api/reservas', { // Cambia esto a '/api/reservas'
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data), // Convertir datos a JSON
+})
+.then(response => {
+    if (response.ok) {
+        alert('Reserva realizada con éxito.');
+        window.location.href = 'index.html'; // Redirigir a la página principal
+    } else {
+        return response.json().then(err => { throw new Error(err.error); });
+    }
+})
+.catch(error => {
+    alert('Error al realizar la reserva: ' + error.message);
+    console.error('Error:', error);
+});
+        };
+    </script>
+</body>
+
+</html>

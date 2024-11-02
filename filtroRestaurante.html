@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/style/style.css" />
+    <title>Font D' Oro</title>
+</head>
+<header>
+   <!--  <div id="header">
+        <a href="histReserva.html" class="verHistorial">Ver Hist. Reservas</a>
+        <h1>
+            <a href="index.html" class="fontdoro">Font D' Oro</a>
+        </h1>
+        <a href="" class="cerrarSesion">Cerrar Sesión</a>
+    </div> -->
+</header>
+
+<body>
+    <div class="cajaFiltro">
+        <div class='bloqueTexto'>
+            <h1>Lista de Restaurantes</h1>
+            <div class="input3">
+                <p>Filtrar por disponibilidad:</p>
+                <select id="disponibilidad" class="inputTipoPago">
+                    <option value="">Todos</option>
+                    <option value="true">Disponibles</option>
+                    <option value="false">No Disponibles</option>
+                </select>
+                <button id="filtrarBtn">Filtrar</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="pagina">
+        <div id="restaurant-list">
+            <!-- Aquí se insertarán las cartas de los restaurantes -->
+        </div>
+    </div>
+
+    <script>
+        // Función para obtener los restaurantes filtrados por ciudad y disponibilidad
+        function obtenerRestaurantes(disponible, ciudad) {
+            let url = '/api/restaurantes';
+            let queryParams = [];
+
+            // Agrega parámetros a la URL según los filtros seleccionados
+            if (disponible !== '') {
+                queryParams.push(`disponible=${disponible}`);
+            }
+            if (ciudad) {
+                queryParams.push(`ciudad=${encodeURIComponent(ciudad)}`);
+            }
+            if (queryParams.length > 0) {
+                url += `?${queryParams.join('&')}`;
+            }
+
+            console.log('URL de la consulta:', url); // Para depuración
+
+            fetch(url)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(restaurantes => {
+                    const list = document.getElementById('restaurant-list');
+                    list.innerHTML = ''; // Limpiar la lista antes de agregar nuevos elementos
+                    restaurantes.forEach(restaurant => {
+                        const card = document.createElement('div');
+                        card.className = 'card';
+                        card.innerHTML = `
+                            <a href="/reservaCliente" class="card-link">
+                                <h2>${restaurant.nombre}</h2>
+                                <img src="img/${restaurant.image}" alt="${restaurant.nombre}" style="width:100%; border-radius: 8px;">
+                                <p>Ciudad: ${restaurant.ciudad}</p>
+                                <p>Dirección: ${restaurant.direccion}</p>
+                                <p class="${restaurant.disponible ? 'available' : 'not-available'}">
+                                    ${restaurant.disponible ? 'Disponible' : 'No Disponible'}
+                                </p>
+                            </a>
+                        `;
+                        list.appendChild(card);
+                    });
+                })
+                .catch(error => console.error('Error al obtener restaurantes:', error));
+        }
+
+        // Obtiene el parámetro 'ciudad' desde la URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const ciudad = urlParams.get('ciudad');
+
+        // Al cargar la página, obtener restaurantes por ciudad y disponibilidad
+        window.onload = () => obtenerRestaurantes('', ciudad);
+
+        // Filtrar restaurantes cuando se presiona el botón
+        document.getElementById('filtrarBtn').onclick = () => {
+            const disponibilidad = document.getElementById('disponibilidad').value;
+            obtenerRestaurantes(disponibilidad, ciudad);
+        };
+    </script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style/style.css" />
+    <title>Filtrar Restaurantes por Ciudad</title>
+</head>
+<body id="filtrarCiudad">
+    <h1>Filtrar Restaurantes por Ciudad</h1>
+    <div class="caja">
+        <div class="city-card" data-ciudad="Buenos Aires">Buenos Aires</div>
+        <div class="city-card" data-ciudad="Córdoba">Córdoba</div>
+        <div class="city-card" data-ciudad="Rosario">Rosario</div>
+        <div class="city-card" data-ciudad="Mendoza">Mendoza</div>
+        <div class="city-card" data-ciudad="La Plata">La Plata</div>
+        <div class="city-card" data-ciudad="Bariloche">Bariloche</div>
+
+    </div>
+
+    <script>
+        document.querySelectorAll('.city-card').forEach(card => {
+            card.addEventListener('click', () => {
+                const ciudad = card.getAttribute('data-ciudad');
+                window.location.href = `/filtroRestaurante?ciudad=${encodeURIComponent(ciudad)}`;
+            });
+        });
+    </script>
+</body>
+</html>
