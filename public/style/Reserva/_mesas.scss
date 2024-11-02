@@ -1,0 +1,68 @@
+.modal {
+    display: none; /* Oculto por defecto */
+    position: fixed; /* Fijo */
+    z-index: 1; /* En frente */
+    left: 0;
+    top: 0;
+    width: 100%; /* Ancho completo */
+    height: 100%; /* Alto completo */
+    overflow: auto; /* Permitir desplazamiento si es necesario */
+    background-color: rgb(0,0,0); /* Color de fondo */
+    background-color: rgba(0,0,0,0.4); /* Color de fondo con opacidad */
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% desde la parte superior y centrado */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Ancho del modal */
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Estilos para las cartas de mesa */
+.mesa-selector {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 10px;
+}
+
+.mesa-card {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 5px;
+    width: 200px;
+    text-align: center;
+    background-color: #f9f9f9;
+}
+
+.mesa-card p {
+    margin: 5px 0;
+}
+
+.mesa-card button {
+    background-color: #4CAF50; /* Verde */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.mesa-card button:hover {
+    background-color: #45a049;
+}

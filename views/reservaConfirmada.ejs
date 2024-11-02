@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style/style.css" />
+    <title>Confirmación de Reserva</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Reserva Confirmada</h1>
+        <div id="reservaDetalles">
+            <p><strong>ID de Reserva:</strong> <span id="reserva-id"></span></p>
+            <p><strong>Mesa Seleccionada:</strong> <span id="mesa-seleccionada"></span></p>
+            <p><strong>Tipo de Pago:</strong> <span id="tipo-pago"></span></p>
+            <p><strong>Fecha:</strong> <span id="fecha"></span></p>
+            <p><strong>Cantidad de Personas:</strong> <span id="cant-personas"></span></p>
+        </div>
+        <button onclick="window.location.href='/';">Volver a Inicio</button>
+    </div>
+
+    <script>
+        // Función para obtener el ID de la reserva de la URL
+        function obtenerIdReserva() {
+            const params = new URLSearchParams(window.location.search);
+            return params.get('id'); // Retorna el ID de la reserva
+        }
+
+        // Función para mostrar los detalles de la reserva
+        function mostrarDetallesReserva(reserva) {
+            document.getElementById('reserva-id').textContent = reserva._id;
+            document.getElementById('mesa-seleccionada').textContent = reserva.mesaSeleccionada;
+            document.getElementById('tipo-pago').textContent = reserva.tipoPago;
+            document.getElementById('fecha').textContent = reserva.fecha;
+            document.getElementById('cant-personas').textContent = reserva.cantPersonas;
+        }
+
+        // Función para obtener los detalles de la reserva
+        async function cargarDetallesReserva() {
+            const idReserva = obtenerIdReserva();
+            if (!idReserva) {
+                alert('No se ha proporcionado un ID de reserva.');
+                return;
+            }
+
+            try {
+                const response = await fetch(`/reservas/reservaConfirmada/${idReserva}`); // Ajusta la URL según tu API
+                if (!response.ok) throw new Error('Error al obtener los detalles de la reserva');
+                const reserva = await response.json();
+                mostrarDetallesReserva(reserva); // Mostrar detalles de la reserva
+            } catch (error) {
+                alert('Error al cargar los detalles de la reserva: ' + error.message);
+                console.error('Error:', error);
+            }
+        }
+
+        // Llamar a la función para cargar los detalles de la reserva al cargar la página
+        window.onload = cargarDetallesReserva;
+    </script>
+</body>
+</html>
