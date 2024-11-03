@@ -43,7 +43,7 @@ app.use('/api/restaurantes', restaurantesRouter); // Configura las rutas para re
 app.use('/api/restaurantes/:rId', restaurantesRouter); // Configura las rutas para restaurantes
 app.use('/api/reservas', reservaRouter); // Mount the route with a prefix
 app.use('/api/mesas', mesasRouter); // Asegúrate de que esta ruta esté disponible
-app.use('/reservas/reservaConfirmada/:id', reservaRouter); // Configura las rutas para restaurantes
+app.use('/reservas/reservaConfirmada', reservaRouter); // Configura las rutas para restaurantes
 
 // Ruta para mostrar reservas en una vista
 app.get('/reservas', async (req, res) => {

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,22 +8,37 @@
     <link rel="stylesheet" href="/style/style.css" />
     <title>Font D' Oro</title>
 </head>
+
 <body id="ReservaCliente">
     <div class='containerPrincipal'>
+        <h3>Realiza Tu Reserva</h3>
         <div class="cajaLogin">
-            <h3>Realiza Tu Reserva</h3>
             <form id="reservaForm" method="post">
                 <div class='bloqueTexto'>
                     <div class="input1">
                         <p>Seleccionar Mesa</p>
                         <button type="button" id="btnAbrirModal">Seleccionar Mesa</button>
+
                     </div>
                 </div>
-
                 <div class='bloqueTexto'>
                     <div class="input6">
                         <p>Mesa Seleccionada</p>
                         <input name="mesaSeleccionada" class="inputMesaSeleccionada" type='text' readonly>
+                    </div>
+                </div>
+
+                <div class='bloqueTexto'>
+                    <div class="inputHorario">
+                        <p>Seleccionar Horario</p>
+                        <button type="button" id="btnAbrirModalHorario">Seleccionar Horario</button>
+                    </div>
+                </div>
+
+                <div class='bloqueTexto'>
+                    <div class="inputHorarioSeleccionadoDiv">
+                        <p>Horario Seleccionado</p>
+                        <input name="horarioSeleccionado" class="inputHorarioSeleccionado" type='text' readonly>
                     </div>
                 </div>
 
@@ -51,7 +67,6 @@
                     </div>
                 </div>
 
-                <!-- Campo oculto para el ID del restaurante -->
                 <input type="hidden" id="restauranteId" name="restauranteId" value="" />
 
                 <div class='botonIngresar'>
@@ -70,15 +85,20 @@
         </div>
     </div>
 
+    <!-- Modal para seleccionar horario -->
+    <div id="horarioModal" class="modal">
+        <div class="modal-content">
+            <span id="closeModalHorario" class="close">&times;</span>
+            <h2>Horarios Disponibles</h2>
+            <div id="horarioSelector" class="horario-selector"></div>
+        </div>
+    </div>
+
     <script>
-        // Obtener el ID del restaurante de la URL
-
-        // Asignar el ID del restaurante al campo oculto del formulario
-
         // Función para obtener las mesas desde la API
         async function obtenerMesas() {
             try {
-                const response = await fetch(`/api/mesas`); // Ajusta la URL según tu API
+                const response = await fetch(`/api/mesas`);
                 if (!response.ok) throw new Error('Error al obtener mesas');
                 const mesas = await response.json();
                 mostrarMesas(mesas);
@@ -90,7 +110,7 @@
         // Función para mostrar las mesas en el modal
         function mostrarMesas(mesas) {
             const mesaSelector = document.getElementById('mesaSelector');
-            mesaSelector.innerHTML = ''; // Limpiar el contenido anterior
+            mesaSelector.innerHTML = '';
 
             mesas.forEach(mesa => {
                 const mesaCard = document.createElement('div');
@@ -106,66 +126,111 @@
 
         // Función para manejar la selección de una mesa
         function seleccionarMesa(numeroMesa) {
-            const mesaInput = document.querySelector('.inputMesaSeleccionada'); // Campo para mostrar mesa seleccionada
-            mesaInput.value = numeroMesa; // Asignar el número de mesa al input
+            const mesaInput = document.querySelector('.inputMesaSeleccionada');
+            mesaInput.value = numeroMesa;
             alert(`Mesa ${numeroMesa} seleccionada.`);
-            cerrarModal(); // Cerrar el modal
+            cerrarModal();
         }
 
-        // Función para abrir el modal
+        // Función para abrir el modal de mesa
         function abrirModal() {
             document.getElementById('mesaModal').style.display = 'block';
         }
 
-        // Función para cerrar el modal
+        // Función para cerrar el modal de mesa
         function cerrarModal() {
             document.getElementById('mesaModal').style.display = 'none';
         }
 
-        // Event listeners para el botón y el cierre del modal
-        document.getElementById('btnAbrirModal').onclick = abrirModal;
-        document.getElementById('closeModal').onclick = cerrarModal;
+        // Función para abrir el modal de horario
+        function abrirModalHorario() {
+            document.getElementById('horarioModal').style.display = 'block';
+        }
+
+        // Función para cerrar el modal de horario
+        function cerrarModalHorario() {
+            document.getElementById('horarioModal').style.display = 'none';
+        }
+
+        // Función para mostrar horarios en el modal
+        function mostrarHorarios(horarios) {
+            const horarioSelector = document.getElementById('horarioSelector');
+            horarioSelector.innerHTML = '';
+
+            horarios.forEach(horario => {
+                const horarioCard = document.createElement('div');
+                horarioCard.className = 'horario-card';
+                horarioCard.innerHTML = `
+                    <p>${horario}</p>
+                    <button onclick="seleccionarHorario('${horario}')">Seleccionar</button>
+                `;
+                horarioSelector.appendChild(horarioCard);
+            });
+        }
+
+        // Función para manejar la selección de un horario
+        function seleccionarHorario(horario) {
+            const horarioInput = document.querySelector('.inputHorarioSeleccionado');
+            horarioInput.value = horario;
+            console.log(horarioInput.value)
+            alert(`Horario ${horario} seleccionado.`);
+            cerrarModalHorario();
+        }
 
         // Llamar a la función para obtener las mesas al cargar la página
         obtenerMesas();
 
+        // Llamar a la función para mostrar horarios disponibles
+        mostrarHorarios(["12:00 PM", "1:00 PM", "2:00 PM", "3:00 PM", "4:00 PM"]);
+
+        // Event listeners para los botones y cierre de modales
+        document.getElementById('btnAbrirModal').onclick = abrirModal;
+        document.getElementById('closeModal').onclick = cerrarModal;
+        document.getElementById('btnAbrirModalHorario').onclick = abrirModalHorario;
+        document.getElementById('closeModalHorario').onclick = cerrarModalHorario;
+
         // Manejar el envío del formulario
-        document.getElementById('reservaForm').onsubmit = function(event) {
-            event.preventDefault(); // Evitar el envío por defecto
+        document.getElementById('reservaForm').onsubmit = function (event) {
+            event.preventDefault();
 
             const formData = new FormData(this);
             const data = Object.fromEntries(formData.entries());
-            data.restauranteId = "<%=rId%>"
-            // Verificar si hay una mesa seleccionada
+            data.restauranteId = "<%=rId%>";
+
             if (!data.mesaSeleccionada) {
                 alert('Por favor, selecciona una mesa antes de confirmar la reserva.');
                 return;
             }
 
+            if (!data.horarioSeleccionado) {
+                alert('Por favor, selecciona un horario antes de confirmar la reserva.');
+                return;
+            }
+
             // Enviar la reserva al servidor
-            fetch('/api/reservas', { // Cambia esto a '/api/reservas'
+            fetch('/api/reservas', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(data), // Convertir datos a JSON
+                body: JSON.stringify(data),
             })
-            .then(response => {
-                if (response.ok) {
-                    alert('Reserva realizada con éxito.');
-                    response.json().then(r =>{
-                        console.log(r)
-                        window.location.href = `/reservas/reservaConfirmada/${r._id}`; 
-                    })
-                } else {
-                    return response.json().then(err => { throw new Error(err.error); });
-                }
-            })
-            .catch(error => {
-                alert('Error al realizar la reserva: ' + error.message);
-                console.error('Error:', error);
-            });
+                .then(response => {
+                    if (response.ok) {
+                        alert('Reserva realizada con éxito.');
+                        response.json().then(r => {
+                            window.location.href = `/reservas/reservaConfirmada/${r._id}`;
+                        });
+                    } else {
+                        return response.json().then(err => { throw new Error(err.error); });
+                    }
+                })
+                .catch(error => {
+                    alert('Error al realizar la reserva: ' + error.message);
+                    console.error('Error:', error);
+                });
         };
     </script>
 </body>
+
 </html>

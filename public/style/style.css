@@ -96,30 +96,11 @@ body {
   margin: 20px;
   display: flex;
   flex-wrap: wrap;
+  height: 100vh;
   justify-content: center;
 }
 
 /* Header */
-header #header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 20px;
-  background-color: #f8f9fa;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-header #header a {
-  text-decoration: none;
-  color: #333;
-}
-header #header h1 {
-  font-size: 1.8em;
-  font-weight: bold;
-}
-header #header h1 a.fontdoro {
-  color: #333;
-}
-
 /* Contenedor principal de la página */
 .pagina {
   height: 100%;
@@ -136,7 +117,7 @@ header #header h1 a.fontdoro {
   flex-direction: row;
   justify-content: space-between;
   gap: 20px;
-  padding: 20px;
+  padding: 0px;
   border-radius: 8px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
@@ -176,7 +157,16 @@ header #header h1 a.fontdoro {
 }
 
 /* Caja de filtro */
-.cajaFiltro {
+.pagina {
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: column;
+  height: 100vh;
+  width: 100%;
+  align-items: center;
+  text-align: center;
+}
+.pagina .cajaFiltro {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -185,26 +175,27 @@ header #header h1 a.fontdoro {
   background-color: #f0f0f0;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  width: 80%;
 }
-.cajaFiltro .bloqueTexto {
+.pagina .cajaFiltro .bloqueTexto {
   width: 100%;
   max-width: 600px;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-.cajaFiltro .bloqueTexto .input3 {
+.pagina .cajaFiltro .bloqueTexto .input3 {
   width: 100%;
   display: flex;
   align-items: center;
   gap: 10px;
 }
-.cajaFiltro .bloqueTexto .input3 .inputTipoPago {
+.pagina .cajaFiltro .bloqueTexto .input3 .inputTipoPago {
   padding: 8px;
   border-radius: 4px;
   border: 1px solid #ccc;
 }
-.cajaFiltro .bloqueTexto .input3 #filtrarBtn {
+.pagina .cajaFiltro .bloqueTexto .input3 #filtrarBtn {
   padding: 8px 16px;
   background-color: #007bff;
   color: #fff;
@@ -213,52 +204,15 @@ header #header h1 a.fontdoro {
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
-.cajaFiltro .bloqueTexto .input3 #filtrarBtn:hover {
+.pagina .cajaFiltro .bloqueTexto .input3 #filtrarBtn:hover {
   background-color: #0056b3;
-}
-
-body {
-  font-family: Arial, sans-serif;
-  background-color: #f4f4f9;
-  color: #333;
-  padding: 20px;
-}
-
-h1 {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.caja {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  flex-wrap: wrap;
-  margin-bottom: 20px;
-}
-.caja .city-card {
-  background-color: #007bff;
-  color: #fff;
-  padding: 20px;
-  width: 150px;
-  text-align: center;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-.caja .city-card:hover {
-  background-color: #0056b3;
-}
-
-.pagina {
-  display: flex;
-  justify-content: center;
 }
 .pagina #restaurant-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
   gap: 20px;
-  width: 100%;
 }
 .pagina #restaurant-list .card {
   background-color: #fff;
@@ -285,127 +239,79 @@ h1 {
   color: red;
 }
 
-body {
-  font-family: "Helvetica Neue", sans-serif;
-  background-color: #f4f4f4;
-  margin: 0;
-  padding: 0;
+#filtrarCiudad {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f9;
+  color: #333;
+  padding: 20px;
+}
+#filtrarCiudad h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 60px;
+}
+#filtrarCiudad .caja {
   display: flex;
   justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+  width: 100%;
+  flex-wrap: wrap;
+}
+#filtrarCiudad .caja .city-card {
+  background-color: #007bff;
+  color: #fff;
+  padding: 20px;
+  width: 180px;
+  height: 300px;
+  text-align: center;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: column;
+  cursor: pointer;
   align-items: center;
-  height: 100vh;
+  transition: background-color 0.3s ease;
+  font-size: 25px;
+}
+#filtrarCiudad .caja .city-card img {
+  background-size: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 220px;
+  height: 80%;
+}
+#filtrarCiudad .caja .city-card:hover {
+  background-color: #0056b3;
 }
 
-header {
-  background-color: #333;
-  color: white;
-  padding: 15px 20px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  width: 100%;
-  position: absolute;
-  top: 0;
+#ReservaCliente .containerPrincipal {
+  width: 80%;
 }
-header #header {
+#ReservaCliente .containerPrincipal .cajaLogin {
+  width: 70%;
+}
+#ReservaCliente .containerPrincipal .cajaLogin #reservaForm {
+  width: 100%;
+}
+#ReservaCliente .containerPrincipal .cajaLogin #reservaForm .bloqueTexto .input1 {
+  width: 40%;
+  display: flex;
+  justify-content: space-evenly;
+}
+#ReservaCliente .containerPrincipal .cajaLogin #reservaForm .bloqueTexto .input1 button {
+  background-color: rgba(0, 132, 255, 0.907);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 10px;
+}
+#ReservaCliente .containerPrincipal .cajaLogin #reservaForm .input6 {
+  width: 40%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
-header #header h1 {
-  font-size: 1.8em;
-  margin: 0;
-}
-header #header h1 a {
-  color: white;
-  text-decoration: none;
-  transition: color 0.3s;
-}
-header #header h1 a:hover {
-  color: white;
-}
-header #header a {
-  color: white;
-  text-decoration: none;
-  margin-left: 20px;
-  transition: color 0.3s;
-}
-header #header a:hover {
-  color: white;
-}
-
-.containerPrincipal {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
-  width: 100%;
-  height: 100vh;
-}
-.containerPrincipal .cajaLogin {
-  background-color: #eaeaea;
-  border-radius: 5px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  padding: 30px;
-  width: 50%;
-  text-align: center;
-}
-.containerPrincipal .cajaLogin h3 {
-  margin-bottom: 20px;
-  color: #333;
-  font-size: 1.5em;
-  font-weight: normal;
-}
-.containerPrincipal .cajaLogin form {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-.containerPrincipal .cajaLogin form .bloqueTexto {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  width: 100%;
-}
-.containerPrincipal .cajaLogin form .bloqueTexto p {
-  margin: 0;
-  font-weight: normal;
-  color: #333;
-  font-size: 0.9em;
-}
-.containerPrincipal .cajaLogin form .bloqueTexto input[type=number],
-.containerPrincipal .cajaLogin form .bloqueTexto input[type=date],
-.containerPrincipal .cajaLogin form .bloqueTexto select {
-  width: 100%;
-  padding: 10px;
-  margin-top: 5px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 16px;
-}
-.containerPrincipal .cajaLogin form .bloqueTexto input[type=number]:focus,
-.containerPrincipal .cajaLogin form .bloqueTexto input[type=date]:focus,
-.containerPrincipal .cajaLogin form .bloqueTexto select:focus {
-  border-color: #4CAF50;
-  outline: none;
-  box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
-}
-.containerPrincipal .cajaLogin form .botonIngresar {
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
-}
-.containerPrincipal .cajaLogin form .botonIngresar .botonI {
-  background-color: #4CAF50;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  padding: 10px 20px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-  width: 100%;
-}
-.containerPrincipal .cajaLogin form .botonIngresar .botonI:hover {
-  background-color: #3d8b40;
 }
 
 .modal {
@@ -483,33 +389,5 @@ h1 {
   text-align: center;
   justify-content: center;
   color: goldenrod;
-  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
-}
-
-#header {
-  display: flex;
-  border: 6px solid goldenrod;
-  align-content: center;
-  text-align: center;
-  align-content: center;
-  justify-content: center;
-  height: 100px;
-  background-color: #702323;
-  flex-direction: row;
-}
-
-h3 {
-  font-size: 30px;
-  color: black;
-  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
-  width: 500px;
-  height: 100px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-p {
-  font-size: 20px;
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
 }/*# sourceMappingURL=style.css.map */

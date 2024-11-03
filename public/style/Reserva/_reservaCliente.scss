@@ -1,145 +1,34 @@
-// Variables para el tema
-$color-fondo: #f4f4f4; // Color de fondo suave
-$color-principal: #333; // Color principal del texto
-$color-secundario: #eaeaea; // Color de fondo de la caja
-$color-boton: #4CAF50; // Color del botón
-$color-boton-hover: darken($color-boton, 10%); // Color del botón al pasar el ratón
-$fuente-principal: 'Helvetica Neue', sans-serif;
+#ReservaCliente {
 
-// Estilos globales
-body {
-  font-family: $fuente-principal;
-  background-color: $color-fondo;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh; // Ocupa toda la altura de la pantalla
-}
+  .containerPrincipal {
+    width: 80%;
 
-// Encabezado
-header {
-  background-color: $color-principal;
-  color: white;
-  padding: 15px 20px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  width: 100%;
-  position: absolute;
-  top: 0;
+    .cajaLogin {
+      width: 70%;
 
-  #header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    h1 {
-      font-size: 1.8em;
-      margin: 0;
-
-      a {
-        color: white;
-        text-decoration: none;
-        transition: color 0.3s;
-
-        &:hover {
-          color: lighten(white, 20%);
-        }
-      }
-    }
-
-    a {
-      color: white;
-      text-decoration: none;
-      margin-left: 20px;
-      transition: color 0.3s;
-
-      &:hover {
-        color: lighten(white, 20%);
-      }
-    }
-  }
-}
-
-// Contenedor principal
-.containerPrincipal {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
-  width: 100%;
-  height: 100vh;
-
-  .cajaLogin {
-    background-color: $color-secundario;
-    border-radius: 5px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 30px;
-    width: 50%; // Ancho de la caja
-    text-align: center;
-
-    h3 {
-      margin-bottom: 20px;
-      color: $color-principal;
-      font-size: 1.5em;
-      font-weight: normal; // Menos peso para un diseño minimalista
-    }
-
-    form {
-      display: flex;
-      flex-direction: column;
-      gap: 15px; // Espaciado entre los elementos del formulario
-
-      .bloqueTexto {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
+      #reservaForm {
         width: 100%;
 
-        p {
-          margin: 0;
-          font-weight: normal; // Normaliza el peso de la fuente
-          color: $color-principal;
-          font-size: 0.9em; // Tamaño de fuente más pequeño
-        }
+        .bloqueTexto {
 
-        input[type="number"],
-        input[type="date"],
-        select {
-          width: 100%;
-          padding: 10px;
-          margin-top: 5px;
-          border: 1px solid #ccc;
-          border-radius: 4px;
-          font-size: 16px;
-
-          &:focus {
-            border-color: $color-boton;
-            outline: none;
-            box-shadow: 0 0 5px rgba($color-boton, 0.5);
+          .input1 {
+            width: 40%;
+            display: flex;
+            justify-content: space-evenly;
+            button{
+              background-color: rgba(0, 132, 255, 0.907);
+              color: white;
+              border: none;
+              border-radius: 10px;
+              padding: 10px;
+            }
           }
         }
-      }
-
-      .botonIngresar {
-        display: flex;
-        justify-content: center;
-        margin-top: 20px;
-
-        .botonI {
-          background-color: $color-boton;
-          color: white;
-          border: none;
-          border-radius: 4px;
-          padding: 10px 20px;
-          font-size: 16px;
-          cursor: pointer;
-          transition: background-color 0.3s;
-          width: 100%; // Botón ocupa todo el ancho
-
-          &:hover {
-            background-color: $color-boton-hover;
-          }
+        .input6{
+          width: 40%;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
         }
       }
     }

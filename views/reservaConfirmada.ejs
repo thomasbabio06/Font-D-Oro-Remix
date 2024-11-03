@@ -11,11 +11,13 @@
     <div class="container">
         <h1>Reserva Confirmada</h1>
         <div id="reservaDetalles">
-            <p><strong>ID de Reserva:</strong> <span id="reserva-id"></span></p>
-            <p><strong>Mesa Seleccionada:</strong> <span id="mesa-seleccionada"></span></p>
-            <p><strong>Tipo de Pago:</strong> <span id="tipo-pago"></span></p>
-            <p><strong>Fecha:</strong> <span id="fecha"></span></p>
-            <p><strong>Cantidad de Personas:</strong> <span id="cant-personas"></span></p>
+            <p><strong>ID de Reserva:</strong> <span id="reserva-id"><%= _id%></span></p>
+            <p><strong>Mesa Seleccionada:</strong> <span id="mesa-seleccionada"><%=mesaSeleccionada%></span></p>
+            <p><strong>Tipo de Pago:</strong> <span id="tipo-pago"><%= tipoPago%></span></p>
+            <p><strong>Fecha:</strong> <span id="fecha"><%= fecha%></span></p>
+            <p><strong>Horario:</strong> <span id="horario"><%= horarioSeleccionado%></span></p>
+
+            <p><strong>Cantidad de Personas:</strong> <span id="cant-personas"><%= cantPersonas%></span></p>
         </div>
         <button onclick="window.location.href='/';">Volver a Inicio</button>
     </div>
@@ -33,6 +35,8 @@
             document.getElementById('mesa-seleccionada').textContent = reserva.mesaSeleccionada;
             document.getElementById('tipo-pago').textContent = reserva.tipoPago;
             document.getElementById('fecha').textContent = reserva.fecha;
+            document.getElementById('horario').textContent = reserva.horarioSeleccionado;
+
             document.getElementById('cant-personas').textContent = reserva.cantPersonas;
         }
 

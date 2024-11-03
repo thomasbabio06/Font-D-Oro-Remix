@@ -4,10 +4,11 @@ const collection = 'reserva'
 // Definición del esquema de reserva
 
 const ReservaSchema = new mongoose.Schema({
-  numeroMesa: Number,
-  cantidadPersonas: Number,
+  mesaSeleccionada: Number,
+  cantPersonas: Number,
   fecha: Date,
   tipoPago: String,
+  horarioSeleccionado: String,
   restauranteId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Restaurante', // Asegúrate de que coincida con el nombre del modelo de Restaurante

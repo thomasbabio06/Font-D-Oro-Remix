@@ -3,7 +3,8 @@ import Reserva from "../dao/Models/reserva.model.js";
 
 export async function crearReserva(req, res) {
     try {
-      const reserva = await reservaService.crearReserva(req.body);
+      console.log(req.body)
+      const reserva = await Reserva.create(req.body);
       res.status(201).json(reserva);
     } catch (error) {
       res.status(500).json({ error: 'Error al crear la reserva' });
@@ -12,8 +13,11 @@ export async function crearReserva(req, res) {
   
   export async function obtenerReservas(req, res) {
     try {
-      const reservas = await reservaService.obtenerReservas();
-      res.render('reservaConfirmada', { reservas }); // Renderiza la vista con las reservas
+      const {id} = req.params
+      let reserva = await Reserva.findById(id);
+      reserva = reserva.toObject()
+      reserva.fecha = reserva.fecha.toLocaleDateString()
+      res.render('reservaConfirmada',  reserva ); // Renderiza la vista con las reservas
     } catch (error) {
       res.status(500).json({ error: 'Error al obtener las reservas' });
     }

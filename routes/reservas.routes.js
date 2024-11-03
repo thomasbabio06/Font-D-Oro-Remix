@@ -26,7 +26,7 @@ reservasRouter.get('/', async (req, res) => {
     }
 });  */
 reservasRouter.post('/', crearReserva);
-reservasRouter.get('/', obtenerReservas); // Cambia según cómo manejes las reservas
+reservasRouter.get('/:id', obtenerReservas); // Cambia según cómo manejes las reservas
 reservasRouter.get('/reservaConfirmada/:id', obtenerReservaPorId);
 
 export default reservasRouter;

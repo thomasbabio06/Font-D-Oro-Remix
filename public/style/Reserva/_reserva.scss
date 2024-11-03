@@ -1,102 +1,88 @@
 /* Estilos globales */
 body {
-    font-family: Arial, sans-serif;
-    margin: 20px;
+  font-family: Arial, sans-serif;
+  margin: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  height: 100vh;
+  justify-content: center;
+}
+
+/* Header */
+
+/* Contenedor principal de la página */
+.pagina {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: 20px;
+
+  #restaurant-list {
+    width: 100%; // Para ajustarse mejor en pantallas pequeñas
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
-  }
-  
-  /* Header */
-  header {
-    #header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 10px 20px;
-      background-color: #f8f9fa;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  
-      a {
-        text-decoration: none;
-        color: #333;
-      }
-  
-      h1 {
-        font-size: 1.8em;
-        font-weight: bold;
-  
-        a.fontdoro {
-          color: #333;
-        }
-      }
-    }
-  }
-  
-  /* Contenedor principal de la página */
-  .pagina {
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    padding: 20px;
-  
-    #restaurant-list {
-      width: 100%; // Para ajustarse mejor en pantallas pequeñas
-      display: flex;
-      flex-wrap: wrap;
-      height: 100vh;
-      flex-direction: row;
-      justify-content: space-between;
-      gap: 20px; // Espacio entre las cartas
-      padding: 20px;
+    height: 100vh;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 20px; // Espacio entre las cartas
+    padding: 0px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+
+    .card {
+      border: 1px solid #ddd;
       border-radius: 8px;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-      .card {
-        border: 1px solid #ddd;
+      padding: 16px;
+      width: 250px;
+      height: 350px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background-color: #ffffff;
+
+
+
+      h2 {
+        font-size: 1.5em;
+        margin: 8px 0;
+      }
+
+      img {
+        width: 100%;
         border-radius: 8px;
-        padding: 16px;
-        width: 250px;
-        height: 350px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        text-align: center;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        background-color: #ffffff;
-      
-        
-       
-        h2 {
-          font-size: 1.5em;
-          margin: 8px 0;
-        }
-  
-        img {
-          width: 100%;
-          border-radius: 8px;
-          margin-bottom: 12px;
-        }
-  
-        p {
-          margin: 8px 0;
-          color: #555;
-        }
-  
-        .available {
-          color: green;
-          font-weight: bold;
-        }
-  
-        .not-available {
-          color: red;
-          font-weight: bold;
-        }
+        margin-bottom: 12px;
+      }
+
+      p {
+        margin: 8px 0;
+        color: #555;
+      }
+
+      .available {
+        color: green;
+        font-weight: bold;
+      }
+
+      .not-available {
+        color: red;
+        font-weight: bold;
       }
     }
   }
-  
-  /* Caja de filtro */
+}
+
+/* Caja de filtro */
+.pagina {
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: column;
+  height: 100vh;
+  width: 100%;
+align-items: center;
+text-align: center;
   .cajaFiltro {
     display: flex;
     justify-content: center;
@@ -106,26 +92,26 @@ body {
     background-color: #f0f0f0;
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  
+width: 80%;
     .bloqueTexto {
       width: 100%;
       max-width: 600px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-  
+
       .input3 {
         width: 100%;
         display: flex;
         align-items: center;
         gap: 10px;
-  
+
         .inputTipoPago {
           padding: 8px;
           border-radius: 4px;
           border: 1px solid #ccc;
         }
-  
+
         #filtrarBtn {
           padding: 8px 16px;
           background-color: #007bff;
@@ -134,7 +120,7 @@ body {
           border-radius: 4px;
           cursor: pointer;
           transition: background-color 0.3s ease;
-  
+
           &:hover {
             background-color: #0056b3;
           }
@@ -142,4 +128,42 @@ body {
       }
     }
   }
-  
+
+  #restaurant-list {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 20px;
+
+    .card {
+      background-color: #fff;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+      h2 {
+        font-size: 1.2em;
+        margin: 0;
+      }
+
+      img {
+        border-radius: 8px;
+        margin-bottom: 10px;
+      }
+
+      p {
+        margin: 5px 0;
+      }
+
+      .available {
+        color: green;
+      }
+
+      .not-available {
+        color: red;
+      }
+    }
+  }
+}
