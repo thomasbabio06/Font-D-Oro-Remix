@@ -1,109 +1,16 @@
 @charset "UTF-8";
-.cajaLogin {
-  width: 450px;
-  height: 550px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background-color: beige;
-  border: 4px solid goldenrod;
-  margin-top: 10px;
-  box-shadow: 1px 1px 10px gray;
-}
-
-.bloqueTexto {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-}
-
-.containerPrincipal {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 100px;
-  flex-direction: column;
-}
-
-.botonIngresar {
-  height: 40px;
-  border-radius: 3px;
-  background-color: beige;
-  margin-top: 40px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-input {
-  height: 20px;
-}
-
-a {
-  text-decoration: none;
-}
-
-.botonI {
-  cursor: pointer;
-  width: 100px;
-  height: 40px;
-  border: 2px solid;
-  border-color: #913539;
-  border-radius: 10px;
-  margin: 0px;
-}
-
-.input1 {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-}
-
-.input2 {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-}
-
-.input3 {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-}
-
-.input4 {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-}
-
-.input5 {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-}
-
 /* Estilos globales */
 body {
   font-family: Arial, sans-serif;
-  margin: 20px;
   display: flex;
   flex-wrap: wrap;
-  height: 100vh;
   justify-content: center;
 }
 
 /* Header */
 /* Contenedor principal de la página */
 .pagina {
-  height: 100%;
+  height: 100vh;
   display: flex;
   justify-content: center;
   width: 100%;
@@ -120,11 +27,11 @@ body {
   padding: 0px;
   border-radius: 8px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  color: black;
 }
 .pagina #restaurant-list .card {
   border: 1px solid #ddd;
   border-radius: 8px;
-  padding: 16px;
   width: 250px;
   height: 350px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
@@ -137,6 +44,7 @@ body {
 .pagina #restaurant-list .card h2 {
   font-size: 1.5em;
   margin: 8px 0;
+  color: black;
 }
 .pagina #restaurant-list .card img {
   width: 100%;
@@ -166,20 +74,51 @@ body {
   align-items: center;
   text-align: center;
 }
+.pagina h1 {
+  color: black;
+}
 .pagina .cajaFiltro {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   padding: 20px;
   margin-bottom: 20px;
   background-color: #f0f0f0;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  width: 80%;
+  width: 90%;
+}
+.pagina .cajaFiltro .contenido {
+  width: 30%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.pagina .cajaFiltro .contenido #logOut {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  border-radius: 15px;
+  border: 2px solid rgb(186, 186, 186);
+  color: black;
+  height: 30px;
+  text-align: center;
+}
+.pagina .cajaFiltro #volver {
+  background-color: black;
+  color: white;
+  height: 30px;
+  width: 150px;
+  border-radius: 15px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .pagina .cajaFiltro .bloqueTexto {
   width: 100%;
-  max-width: 600px;
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -195,12 +134,16 @@ body {
   border-radius: 4px;
   border: 1px solid #ccc;
 }
+.pagina .cajaFiltro .bloqueTexto .input3 .inputTipoPago:focus {
+  border: 2px solid rgb(186, 186, 186);
+}
 .pagina .cajaFiltro .bloqueTexto .input3 #filtrarBtn {
   padding: 8px 16px;
   background-color: #007bff;
   color: #fff;
   border: none;
   border-radius: 4px;
+  height: 100%;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
@@ -239,16 +182,164 @@ body {
   color: red;
 }
 
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  font-family: Arial, sans-serif;
+}
+.container #reserva {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 15px;
+}
+.container #reservaDetalles {
+  text-align: left;
+  margin-bottom: 20px;
+}
+.container #reservaDetalles p {
+  font-size: 16px;
+  color: #555;
+  margin: 10px 0;
+}
+.container #reservaDetalles p strong {
+  font-weight: bold;
+  color: #333;
+}
+.container #reservaDetalles p span {
+  color: #666;
+  margin-left: 5px;
+}
+.container button {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 16px;
+  color: #fff;
+  background-color: #333;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.container button:hover {
+  background-color: #555;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f0f2f5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+#loginContainer {
+  display: flex;
+  width: 900px;
+  height: 600px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 15px;
+  overflow: hidden;
+  text-align: center;
+}
+
+#welcomeSection {
+  width: 50%;
+  background-color: #1a1a2e;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+#welcomeSection h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+#welcomeSection p {
+  font-size: 1.1rem;
+  color: #d1d1d1;
+  text-align: center;
+  max-width: 300px;
+}
+
+#loginSection {
+  width: 50%;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 3rem;
+}
+#loginSection h1 {
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 1rem;
+}
+#loginSection #loginForm {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#loginSection #loginForm input {
+  width: 100%;
+  padding: 0.8rem;
+  margin: 0.5rem 0;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+#loginSection #loginForm input:focus {
+  outline: none;
+  border-color: #007bff;
+}
+#loginSection #loginForm button {
+  width: 100%;
+  padding: 0.8rem;
+  margin-top: 1rem;
+  border: none;
+  border-radius: 8px;
+  background-color: #333;
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+#loginSection #loginForm button:hover {
+  background-color: #555;
+}
+#loginSection .loginFooter {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: #666;
+}
+#loginSection .loginFooter a {
+  color: #007bff;
+  text-decoration: none;
+}
+#loginSection .loginFooter a:hover {
+  text-decoration: underline;
+}
+
 #filtrarCiudad {
   font-family: Arial, sans-serif;
-  background-color: #f4f4f9;
-  color: #333;
-  padding: 20px;
+  background-color: #eeeeee;
 }
 #filtrarCiudad h1 {
   text-align: center;
-  margin-bottom: 20px;
   font-size: 60px;
+  color: #333;
 }
 #filtrarCiudad .caja {
   display: flex;
@@ -256,15 +347,18 @@ body {
   gap: 20px;
   flex-wrap: wrap;
   margin-bottom: 20px;
-  width: 100%;
+  height: 60vh;
   flex-wrap: wrap;
 }
+#filtrarCiudad .caja h2 {
+  color: black;
+}
 #filtrarCiudad .caja .city-card {
-  background-color: #007bff;
-  color: #fff;
+  background-color: #FFFFFF;
+  color: black;
   padding: 20px;
   width: 180px;
-  height: 300px;
+  height: 200px;
   text-align: center;
   border-radius: 8px;
   display: flex;
@@ -283,35 +377,193 @@ body {
   height: 80%;
 }
 #filtrarCiudad .caja .city-card:hover {
-  background-color: #0056b3;
+  background-color: #E7E8E8;
 }
 
+#ReservaCliente {
+  background-color: rgba(183, 183, 183, 0.398);
+}
 #ReservaCliente .containerPrincipal {
-  width: 80%;
+  width: 60%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
-#ReservaCliente .containerPrincipal .cajaLogin {
-  width: 70%;
+#ReservaCliente .containerPrincipal h1 {
+  font-size: 80px;
+  color: black;
 }
-#ReservaCliente .containerPrincipal .cajaLogin #reservaForm {
+#ReservaCliente .containerPrincipal .cajaReserva {
+  width: 600px;
+  box-shadow: 1px 1px 19px 0px rgba(63, 62, 62, 0.75);
+  background-color: rgba(255, 255, 255, 0.967);
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 450px;
+  height: 100%;
+}
+#ReservaCliente .containerPrincipal .cajaReserva #reservaForm {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   width: 100%;
 }
-#ReservaCliente .containerPrincipal .cajaLogin #reservaForm .bloqueTexto .input1 {
-  width: 40%;
+#ReservaCliente .containerPrincipal .cajaReserva #reservaForm .bloqueTexto {
+  width: 430px;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
+  align-items: center;
 }
-#ReservaCliente .containerPrincipal .cajaLogin #reservaForm .bloqueTexto .input1 button {
-  background-color: rgba(0, 132, 255, 0.907);
+#ReservaCliente .containerPrincipal .cajaReserva #reservaForm .bloqueTexto .input1 {
+  width: 90%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+#ReservaCliente .containerPrincipal .cajaReserva #reservaForm .bloqueTexto .input1 button {
+  background-color: rgba(0, 0, 0, 0.907);
   color: white;
   border: none;
-  border-radius: 10px;
-  padding: 10px;
+  border-radius: 15px;
+  width: 150px;
+  height: 30px;
+  cursor: pointer;
 }
-#ReservaCliente .containerPrincipal .cajaLogin #reservaForm .input6 {
-  width: 40%;
+#ReservaCliente .containerPrincipal .cajaReserva #reservaForm .input6 {
+  width: 90%;
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+#ReservaCliente .containerPrincipal .cajaReserva #reservaForm .input6 .inputMesaSeleccionada {
+  border-radius: 15px;
+  border: none;
+  height: 20px;
+  cursor: pointer;
+  text-align: center;
+  border: 2px solid rgb(186, 186, 186);
+  outline: none; /* Elimina el contorno predeterminado del navegador */
+  width: 150px;
+}
+#ReservaCliente .containerPrincipal .cajaReserva #reservaForm .input6 .inputMesaSeleccionada:focus {
+  border: 2px solid rgb(186, 186, 186);
+}
+#ReservaCliente .containerPrincipal .cajaReserva #reservaForm .inputHorario {
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+}
+#ReservaCliente .containerPrincipal .cajaReserva #reservaForm .inputHorario #btnAbrirModalHorario {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.907);
+  color: white;
+  border: none;
+  border-radius: 15px;
+  width: 150px;
+  height: 30px;
+  font-size: 12px;
+  text-align: center;
+  cursor: pointer;
+  outline: none; /* Elimina el contorno predeterminado del navegador */
+}
+#ReservaCliente .containerPrincipal .cajaReserva #reservaForm .inputHorario #btnAbrirModalHorario:focus {
+  border: 2px solid rgb(186, 186, 186);
+}
+#ReservaCliente .containerPrincipal .cajaReserva #reservaForm .inputHorarioSeleccionadoDiv {
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+#ReservaCliente .containerPrincipal .cajaReserva #reservaForm .inputHorarioSeleccionadoDiv .inputHorarioSeleccionado {
+  width: 150px;
+  height: 20px;
+  text-align: center;
+  border-radius: 15px;
+  border: 2px solid rgb(186, 186, 186);
+  outline: none; /* Elimina el contorno predeterminado del navegador */
+  cursor: pointer;
+}
+#ReservaCliente .containerPrincipal .cajaReserva #reservaForm .input3 {
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+#ReservaCliente .containerPrincipal .cajaReserva #reservaForm .input3 .inputTipoPago {
+  width: 150px;
+  height: 30px;
+  border-radius: 15px;
+  border: 2px solid rgb(186, 186, 186);
+  outline: none; /* Elimina el contorno predeterminado del navegador */
+  cursor: pointer;
+}
+#ReservaCliente .containerPrincipal .cajaReserva #reservaForm .input3 .inputTipoPago:focus {
+  border: 2px solid rgb(186, 186, 186);
+}
+#ReservaCliente .containerPrincipal .cajaReserva #reservaForm .input4 {
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+#ReservaCliente .containerPrincipal .cajaReserva #reservaForm .input4 .inputFecha {
+  width: 150px;
+  height: 30px;
+  border-radius: 15px;
+  border: 2px solid rgb(186, 186, 186);
+  outline: none; /* Elimina el contorno predeterminado del navegador */
+  cursor: pointer;
+}
+#ReservaCliente .containerPrincipal .cajaReserva #reservaForm .input4 .inputFecha:focus {
+  border: 2px solid rgb(186, 186, 186);
+}
+#ReservaCliente .containerPrincipal .cajaReserva #reservaForm .input5 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+}
+#ReservaCliente .containerPrincipal .cajaReserva #reservaForm .input5 .inputCantPersonas {
+  width: 150px;
+  height: 25px;
+  text-align: center;
+  border-radius: 15px;
+  border: 2px solid rgb(186, 186, 186);
+  outline: none; /* Elimina el contorno predeterminado del navegador */
+  cursor: pointer;
+}
+#ReservaCliente .containerPrincipal .cajaReserva #reservaForm .input5 .inputCantPersonas:focus {
+  border: 2px solid rgb(186, 186, 186);
+}
+#ReservaCliente .containerPrincipal .cajaReserva #reservaForm .botonIngresar {
+  width: 100%;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#ReservaCliente .containerPrincipal .cajaReserva #reservaForm .botonIngresar .botonI {
+  background-color: rgb(0, 0, 0);
+  border: 2px solid rgb(0, 0, 0);
+  color: aliceblue;
+  font-size: 20px;
+  width: 200px;
+  height: 50px;
+  border-radius: 15px;
+  outline: none; /* Elimina el contorno predeterminado del navegador */
+  cursor: pointer;
+}
+#ReservaCliente .containerPrincipal .cajaReserva #reservaForm .botonIngresar .botonI:focus {
+  border: 2px solid rgb(186, 186, 186);
 }
 
 .modal {
@@ -383,7 +635,99 @@ body {
   background-color: #45a049;
 }
 
-h1 {
+#register {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f0f2f5;
+}
+#register #registerContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: #FFFFFF;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  width: 800px;
+  overflow: hidden;
+}
+#register #registerContainer #welcomeMessage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #f0f2f5;
+  width: 300px;
+  padding: 2rem;
+  height: 500px;
+  color: #333;
+}
+#register #registerContainer #welcomeMessage h2 {
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+}
+#register #registerContainer #welcomeMessage p {
+  font-size: 1rem;
+  color: #555;
+}
+#register #registerContainer #registerForm {
+  width: 500px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#register #registerContainer #registerForm h1 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: #333;
+}
+#register #registerContainer #registerForm input {
+  width: 100%;
+  padding: 0.8rem;
+  margin: 0.5rem 0;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+#register #registerContainer #registerForm input:focus {
+  outline: none;
+  border-color: #007bff;
+}
+#register #registerContainer #registerForm button {
+  width: 100%;
+  padding: 0.8rem;
+  margin-top: 1rem;
+  border: none;
+  border-radius: 8px;
+  background-color: #333;
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+#register #registerContainer #registerForm button:hover {
+  background-color: #555;
+}
+#register #registerContainer #registerForm .loginRedirect {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: #666;
+}
+#register #registerContainer #registerForm .loginRedirect a {
+  color: #007bff;
+  text-decoration: none;
+}
+#register #registerContainer #registerForm .loginRedirect a:hover {
+  text-decoration: underline;
+}
+
+* {
+  text-decoration: none;
+}
+
+#reserva {
   font-size: 40px;
   display: flex;
   text-align: center;

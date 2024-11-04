@@ -9,7 +9,7 @@
 </head>
 <body>
     <div class="container">
-        <h1>Reserva Confirmada</h1>
+        <h1 id="reserva">Reserva Confirmada</h1>
         <div id="reservaDetalles">
             <p><strong>ID de Reserva:</strong> <span id="reserva-id"><%= _id%></span></p>
             <p><strong>Mesa Seleccionada:</strong> <span id="mesa-seleccionada"><%=mesaSeleccionada%></span></p>
@@ -43,18 +43,13 @@
         // Función para obtener los detalles de la reserva
         async function cargarDetallesReserva() {
             const idReserva = obtenerIdReserva();
-            if (!idReserva) {
-                alert('No se ha proporcionado un ID de reserva.');
-                return;
-            }
-
+          
             try {
                 const response = await fetch(`/reservas/reservaConfirmada/${idReserva}`); // Ajusta la URL según tu API
                 if (!response.ok) throw new Error('Error al obtener los detalles de la reserva');
                 const reserva = await response.json();
                 mostrarDetallesReserva(reserva); // Mostrar detalles de la reserva
             } catch (error) {
-                alert('Error al cargar los detalles de la reserva: ' + error.message);
                 console.error('Error:', error);
             }
         }

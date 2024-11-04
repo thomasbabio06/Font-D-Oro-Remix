@@ -1,46 +1,60 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="es">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <link rel="stylesheet" href="style.css">
-    <title>Font D' Oro</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style/style.css" />
+    <title>Registro de Reserva</title>
 </head>
-<header>
-    <div id='header'>
-        <h1>Font D' Oro</h1>
-    </div>
-</header>
-
-<body id="bodyLogin">
-    <div class='containerPrincipal'>
-        <h3 class="login">Login</h3>
-        <div class="cajaLogin">
-            <form action="" method="post">
-                <div class='bloqueTexto'>
-                    <div class="input1">
-                        <p>Nombre</p><input type='text' name='nombre' required>
-                    </div>
-                </div>
-
-                <div class='bloqueTexto'>
-                    <div class="input2">
-                        <p>DNI</p><input type='text' name='dni' required maxLength=8 minlength="8">
-                    </div>
-                </div>
-
-                <div class='bloqueTexto'>
-                    <div class="input5">
-                        <p>Contraseña</p><input type='password' name='contrasena' required>
-                    </div>
-                </div>
-
-                <div class='botonIngresar'>
-                    <button class='botonI' type='submit'>Ingresar</button>
-                </div>
-            </form>
+<body id="register">
+    <div id="registerContainer">
+        <div id="welcomeMessage">
+            <h2>Bienvenido/as</h2>
+            <p>¡Regístrate para reservar tu lugar!</p>
         </div>
+        <form id="registerForm">
+            <h1>Registrate</h1>
+            <input type="text" name="nombre" placeholder="Nombre" required>
+            <input type="text" name="dni" placeholder="DNI" required>
+            <input type="password" name="contrasena" placeholder="Contraseña" required>
+            <input type="number" name="telefono" placeholder="Teléfono" required>
+            <button type="submit">Registrarse</button>
+            <p class="loginRedirect">¿Ya tienes una cuenta? <a href="/login.html">Inicia sesión</a></p>
+        </form>
     </div>
-</body>
 
+    <script src="app.js"></script>
+    <script>
+        document.getElementById('registerForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const nombre = e.target.nombre.value;
+            const dni = e.target.dni.value;
+            const contrasena = e.target.contrasena.value;
+            const telefono = e.target.telefono.value;
+
+            try {
+                const response = await fetch('/api/register', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ nombre, dni, contrasena, telefono }),
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    alert('Registro exitoso');
+                    window.location.href = '/login.html'; // Redirigir al login después del registro
+
+                } else {
+                    alert(data.message);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        });
+    </script>
+</body>
 </html>

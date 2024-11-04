@@ -6,10 +6,14 @@ import { dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 import ejs from "ejs"
+import { userRoutes } from './routes/session.routes.js';
 import mesasRouter from './routes/mesas.routes.js';
 import Reserva from './dao/Models/reserva.model.js';
-const PORT = 8080;  
+const PORT = 3000;  
 const app = express();
+import passport from 'passport';
+import session from 'express-session';
+
 import path from 'path'; // Importa el módulo path aquí
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }));
@@ -17,7 +21,7 @@ app.set('view engine', 'ejs');
 app.set('views', './views'); // Asegúrate de que esta línea esté presente
 
 app.use(express.static('public'))
-app.set('views', path.join(__dirname, 'views')); 
+app.use(express.static(path.join(__dirname)));
 app.use(express.json()); // Middleware para parsear el cuerpo de la solicitud como JSON
 const mongoURI = "mongodb+srv://julietacortiet36:TA39GTSP2R7Xppd4@cluster0.zvr2c.mongodb.net/Reservas?retryWrites=true&w=majority&appName=Cluster0"
   mongoose.connect(mongoURI)
@@ -27,7 +31,16 @@ const mongoURI = "mongodb+srv://julietacortiet36:TA39GTSP2R7Xppd4@cluster0.zvr2c
     res.render('index');
   })
   
- 
+  app.use(session({
+    secret: 'tu_secreto', // Cambia a una cadena secreta segura
+    resave: false,
+    saveUninitialized: false,
+    cookie: { secure: false } // Cambia a true si usas HTTPS
+  }));
+  
+
+  app.use(passport.initialize());
+  app.use(passport.session());
 //Rutas
 app.get('/filtrarPorCategoria', (req, res) => {
     res.sendFile(path.join(process.cwd(), 'filtrarPorCategoria.html'));
@@ -44,6 +57,11 @@ app.use('/api/restaurantes/:rId', restaurantesRouter); // Configura las rutas pa
 app.use('/api/reservas', reservaRouter); // Mount the route with a prefix
 app.use('/api/mesas', mesasRouter); // Asegúrate de que esta ruta esté disponible
 app.use('/reservas/reservaConfirmada', reservaRouter); // Configura las rutas para restaurantes
+app.use('/api', userRoutes);
+app.use('/api/login', userRoutes);
+app.get('/', (req, res) => {
+  res.sendFile('public/index.html'); // Asegúrate de que la ruta al index sea correcta
+});
 
 // Ruta para mostrar reservas en una vista
 app.get('/reservas', async (req, res) => {

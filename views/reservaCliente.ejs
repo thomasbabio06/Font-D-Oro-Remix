@@ -11,8 +11,8 @@
 
 <body id="ReservaCliente">
     <div class='containerPrincipal'>
-        <h3>Realiza Tu Reserva</h3>
-        <div class="cajaLogin">
+        <h1>Realiza Tu Reserva</h1>
+        <div class="cajaReserva">
             <form id="reservaForm" method="post">
                 <div class='bloqueTexto'>
                     <div class="input1">
@@ -84,7 +84,6 @@
             <div id="mesaSelector" class="mesa-selector"></div>
         </div>
     </div>
-
     <!-- Modal para seleccionar horario -->
     <div id="horarioModal" class="modal">
         <div class="modal-content">
@@ -109,20 +108,23 @@
 
         // Función para mostrar las mesas en el modal
         function mostrarMesas(mesas) {
-            const mesaSelector = document.getElementById('mesaSelector');
-            mesaSelector.innerHTML = '';
+    const mesaSelector = document.getElementById('mesaSelector');
+    mesaSelector.innerHTML = '';
 
-            mesas.forEach(mesa => {
-                const mesaCard = document.createElement('div');
-                mesaCard.className = 'mesa-card';
-                mesaCard.innerHTML = `
-                    <p>Mesa ${mesa.numeroMesa}</p>
-                    <p>Disponibilidad: ${mesa.disponible ? 'Disponible' : 'No Disponible'}</p>
-                    <button onclick="seleccionarMesa(${mesa.numeroMesa})">Seleccionar</button>
-                `;
-                mesaSelector.appendChild(mesaCard);
-            });
-        }
+    mesas.forEach(mesa => {
+        const mesaCard = document.createElement('div');
+        mesaCard.className = 'mesa-card';
+        // Usa el número de mesa para seleccionar la imagen correspondiente
+        const imgSrc = `/img/mesa${mesa.numeroMesa}.png`;
+        
+        mesaCard.innerHTML = `
+            <p>Mesa ${mesa.numeroMesa}</p>
+            <p>Disponibilidad: ${mesa.disponible ? 'Disponible' : 'No Disponible'}</p>
+            <img src="${imgSrc}" alt="Mesa ${mesa.numeroMesa}" onclick="seleccionarMesa(${mesa.numeroMesa})" style="cursor: pointer;">
+        `;
+        mesaSelector.appendChild(mesaCard);
+    });
+}
 
         // Función para manejar la selección de una mesa
         function seleccionarMesa(numeroMesa) {

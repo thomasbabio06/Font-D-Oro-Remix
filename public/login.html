@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Restaurante</title>
+    <link rel="stylesheet" href="/style/style.css" />
+</head>
+<body>
+    <div id="loginContainer">
+        <div id="welcomeSection">
+            <h2>Bienvenido a Nuestro Restaurante</h2>
+            <p>Descubre lo mejor de nuestra cocina. Inicia sesión para acceder a tu cuenta y gestionar tus reservas.</p>
+        </div>
+        
+        <div id="loginSection">
+            <h1>Iniciar Sesión</h1>
+            <form id="loginForm">
+               
+                <input type="text" name="nombre" placeholder="Nombre" required>
+                <input type="text" name="dni" placeholder="DNI" required>
+                <input type="password" name="contrasena" placeholder="Contraseña" required>
+                <button type="submit">Iniciar Sesión</button>
+            </form>
+            <p class="loginFooter">
+                ¿No tienes una cuenta? <a href="./index.html">Regístrate</a>
+            </p>
+        </div>
+    </div>
+    
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const nombre = e.target.nombre.value;
+            const dni = e.target.dni.value;
+            const contrasena = e.target.contrasena.value;
+
+            try {
+                const response = await fetch('/api/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ nombre, dni, contrasena })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    alert('Inicio de sesión exitoso');
+                    window.location.href = '/filtrarPorCategoria.html';
+
+                    // Redirigir o hacer algo después de iniciar sesión
+                } else {
+                    alert(data.message);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        });
+    </script>
+</body>
+</html>

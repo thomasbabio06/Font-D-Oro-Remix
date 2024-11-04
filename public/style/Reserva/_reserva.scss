@@ -1,10 +1,8 @@
 /* Estilos globales */
 body {
   font-family: Arial, sans-serif;
-  margin: 20px;
   display: flex;
   flex-wrap: wrap;
-  height: 100vh;
   justify-content: center;
 }
 
@@ -12,7 +10,7 @@ body {
 
 /* Contenedor principal de la página */
 .pagina {
-  height: 100%;
+  height: 100vh;
   display: flex;
   justify-content: center;
   width: 100%;
@@ -29,11 +27,11 @@ body {
     padding: 0px;
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    color: black;
 
     .card {
       border: 1px solid #ddd;
       border-radius: 8px;
-      padding: 16px;
       width: 250px;
       height: 350px;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
@@ -48,6 +46,7 @@ body {
       h2 {
         font-size: 1.5em;
         margin: 8px 0;
+        color: black;
       }
 
       img {
@@ -83,23 +82,54 @@ body {
   width: 100%;
 align-items: center;
 text-align: center;
+h1{
+  color: black;
+}
   .cajaFiltro {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     padding: 20px;
     margin-bottom: 20px;
     background-color: #f0f0f0;
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-width: 80%;
+width: 90%;
+.contenido{
+  width: 30%;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  #logOut{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    border-radius: 15px;
+    border: 2px solid rgb(186, 186, 186);
+    color: black;
+    height: 30px;
+text-align: center;
+  }
+}
+#volver{
+  background-color: black;
+  color: white;
+  height: 30px;
+  width: 150px;
+  border-radius: 15px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
     .bloqueTexto {
       width: 100%;
-      max-width: 600px;
+      width: 100%;
       display: flex;
       justify-content: space-between;
       align-items: center;
-
       .input3 {
         width: 100%;
         display: flex;
@@ -110,6 +140,9 @@ width: 80%;
           padding: 8px;
           border-radius: 4px;
           border: 1px solid #ccc;
+          &:focus {
+            border: 2px solid rgb(186, 186, 186);
+          }
         }
 
         #filtrarBtn {
@@ -118,6 +151,7 @@ width: 80%;
           color: #fff;
           border: none;
           border-radius: 4px;
+          height: 100%;
           cursor: pointer;
           transition: background-color 0.3s ease;
 
